@@ -7,6 +7,7 @@
   import DownloadAction from '$lib/components/asset-viewer/actions/download-action.svelte';
   import FavoriteAction from '$lib/components/asset-viewer/actions/favorite-action.svelte';
   import RestoreAction from '$lib/components/asset-viewer/actions/restore-action.svelte';
+  import RotateAction from '$lib/components/asset-viewer/actions/rotate-action.svelte';
   import SetAlbumCoverAction from '$lib/components/asset-viewer/actions/set-album-cover-action.svelte';
   import SetProfilePictureAction from '$lib/components/asset-viewer/actions/set-profile-picture-action.svelte';
   import ShareAction from '$lib/components/asset-viewer/actions/share-action.svelte';
@@ -48,6 +49,7 @@
   export let onPlaySlideshow: () => void;
   export let onShowDetail: () => void;
   export let onClose: () => void;
+  export let onSetRotation: (rotation: number) => void;
 
   const sharedLink = getSharedLink();
 
@@ -117,6 +119,10 @@
         {/if}
 
         {#if isOwner}
+          {#if !asset.isTrashed}
+            <RotateAction {asset} {onAction} {onSetRotation} to="left" />
+            <RotateAction {asset} {onAction} {onSetRotation} to="right" />
+          {/if}
           {#if hasStackChildren}
             <UnstackAction {stackedAssets} {onAction} />
           {/if}

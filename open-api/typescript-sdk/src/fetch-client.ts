@@ -381,6 +381,7 @@ export type UpdateAssetDto = {
     isFavorite?: boolean;
     latitude?: number;
     longitude?: number;
+    orientation?: string;
 };
 export type AssetMediaReplaceDto = {
     assetData: Blob;
